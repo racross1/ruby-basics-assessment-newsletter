@@ -28,24 +28,45 @@ ARTICLES = [
 #########################
 
 def calculate_recipients
-  # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
-  # write a method that will return an array of only the subscribers who haven't unsubscribed
-end
+  recipients = []
+  SUBSCRIBERS.each do |name|
+    if !UNSUBSCRIBED.include?(name)
+      recipients << name
+    end
+  end 
+  recipients
+end 
 
-def first_n_articles(number_of_articles
-  ARTICLES.first(number_of_articles)
+
+def first_n_articles(number_of_articles)
+  ARTICLES.first(number_of_articles.to_i)
 end
 
 def print_recipients
+  list = calculate_recipients
+  list.map do |email|
+    email.concat(",")
+  end 
+  
+  print list.join(" ")
+  
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
 end
 
 def print_one_article(article)
+  print article["title"]
+  print "by: #{article["author"]}"
+  print article["text"]
+  
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
+
+#   Mining
+# by: Destiny Blanda Bruen II
+# The orthogonal features, when combined, can explode into complexity.
 end
 
 def print_many_articles(articles)
@@ -55,6 +76,7 @@ end
 
 def format_campus_location(campus)
   "Flatiron #{campus["name"]}"
+  #"Flatiron #{campus["name"]}"
 end
 
 def format_subject
@@ -80,7 +102,7 @@ def print_newsletter(number)
   print_many_articles(articles)
   puts format_footer(CAMPUS)
 
-  end
+
 end
 
 def run
